@@ -1,0 +1,1482 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نساء | SIMO KBM</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #777777;
+        }
+
+        .cart-button {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 15px;
+            border: 1px solid #111111;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .cart-button small {
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111111;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 11px;
+        }
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            max-width: 1200px;
+            margin: auto;
+            padding: 75px 25px 45px;
+            text-align: center;
+        }
+
+        .page-header span {
+            display: block;
+            color: #777777;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .page-header h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: #777777;
+            font-size: 16px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 25px 90px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 360px;
+            background: #f4f4f4;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding-top: 15px;
+        }
+
+        .product-info h2 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .product-category {
+            color: #888888;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .click-text {
+            margin-top: 10px;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: #ffffff;
+            border-radius: 15px;
+            overflow-y: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image {
+            min-height: 550px;
+            background: #f3f3f3;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            padding: 45px 35px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background: #111111;
+            color: #ffffff;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .modal-content .category {
+            color: #888888;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .modal-content h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .modal-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .option-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .option-button {
+            min-width: 50px;
+            height: 42px;
+            padding: 0 14px;
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option-button:hover {
+            border-color: #111111;
+        }
+
+        .option-button.selected {
+            background: #111111;
+            color: #ffffff;
+            border-color: #111111;
+        }
+
+        .color-button {
+            min-width: 80px;
+        }
+
+        /* =========================
+           ADD TO CART
+        ========================= */
+
+        .add-cart-button {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 7px;
+            background: #111111;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-cart-button:hover {
+            background: #333333;
+        }
+
+        .add-cart-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .selection-message {
+            min-height: 22px;
+            margin-top: 14px;
+            text-align: center;
+            font-size: 14px;
+            color: #555555;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111111;
+            color: #ffffff;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .header-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-box {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-image {
+                min-height: 300px;
+                height: 300px;
+            }
+
+            .modal-content {
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .page-header {
+                padding-top: 50px;
+            }
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 330px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+        <div class="header-container">
+
+            <a href="../index.html" class="logo">
+                SIMO KBM
+            </a>
+
+            <nav>
+
+                <a href="../index.html">
+                    الرئيسية
+                </a>
+
+                <a href="shop.html">
+                    المتجر
+                </a>
+
+                <a href="men.html">
+                    رجال
+                </a>
+
+                <a href="women.html" class="active">
+                    نساء
+                </a>
+
+                <a href="kids.html">
+                    أطفال
+                </a>
+
+                <a href="contact.html">
+                    تواصل معنا
+                </a>
+
+            </nav>
+
+            <a href="cart.html" class="cart-button">
+
+                🛒 السلة
+
+                <small id="cartCount">
+                    0
+                </small>
+
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         PAGE TITLE
+    ========================= -->
+
+    <main>
+
+        <section class="page-header">
+
+            <span>
+                SIMO KBM
+            </span>
+
+            <h1>
+                أحذية النساء
+            </h1>
+
+            <p>
+                اكتشفي مجموعتنا من الأحذية النسائية واختاري المقاس واللون المناسب لك.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             PRODUCTS
+        ========================= -->
+
+        <section class="products-section">
+
+            <div class="products-grid">
+
+
+                <!-- المنتج 1 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(1)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w1.jpg"
+                            alt="حذاء نسائي 1"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 01
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية نسائية
+                        </div>
+
+                        <div class="product-price">
+                            299 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- المنتج 2 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(2)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w2.jpg"
+                            alt="حذاء نسائي 2"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 02
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية رياضية
+                        </div>
+
+                        <div class="product-price">
+                            349 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- المنتج 3 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(3)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w3.jpg"
+                            alt="حذاء نسائي 3"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 03
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية كاجوال
+                        </div>
+
+                        <div class="product-price">
+                            379 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- المنتج 4 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(4)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w4.jpg"
+                            alt="حذاء نسائي 4"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 04
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية رياضية
+                        </div>
+
+                        <div class="product-price">
+                            329 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- المنتج 5 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(5)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w5.jpg"
+                            alt="حذاء نسائي 5"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 05
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية نسائية
+                        </div>
+
+                        <div class="product-price">
+                            359 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- المنتج 6 -->
+
+                <article
+                    class="product-card"
+                    onclick="openProduct(6)"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="../images/w6.jpg"
+                            alt="حذاء نسائي 6"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h2>
+                            حذاء نسائي 06
+                        </h2>
+
+                        <div class="product-category">
+                            أحذية نسائية
+                        </div>
+
+                        <div class="product-price">
+                            399 درهم
+                        </div>
+
+                        <div class="click-text">
+                            اضغطي لاختيار المقاس واللون
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL
+    ========================= -->
+
+    <div class="modal" id="productModal">
+
+        <div class="modal-box">
+
+            <button
+                class="close-modal"
+                onclick="closeModal()"
+                aria-label="إغلاق"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-image">
+
+                <img
+                    id="modalImage"
+                    src=""
+                    alt="صورة المنتج"
+                >
+
+            </div>
+
+
+            <div class="modal-content">
+
+                <div
+                    class="category"
+                    id="modalCategory"
+                >
+                    أحذية نسائية
+                </div>
+
+
+                <h2 id="modalName">
+                    اسم المنتج
+                </h2>
+
+
+                <div
+                    class="modal-price"
+                    id="modalPrice"
+                >
+                    299 درهم
+                </div>
+
+
+                <!-- المقاس -->
+
+                <div class="option-title">
+                    اختاري المقاس:
+                </div>
+
+                <div
+                    class="options"
+                    id="sizeOptions"
+                >
+                </div>
+
+
+                <!-- اللون -->
+
+                <div class="option-title">
+                    اختاري اللون:
+                </div>
+
+                <div
+                    class="options"
+                    id="colorOptions"
+                >
+                </div>
+
+
+                <button
+                    class="add-cart-button"
+                    id="addCartButton"
+                    onclick="addToCart()"
+                    disabled
+                >
+                    اختاري المقاس واللون
+                </button>
+
+
+                <div
+                    class="selection-message"
+                    id="selectionMessage"
+                >
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <strong>
+            SIMO KBM
+        </strong>
+
+        <p>
+            متجر الأحذية
+        </p>
+
+        <p>
+            © 2026 SIMO KBM - جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           المنتجات
+        ========================= */
+
+        const products = {
+
+            1: {
+                id: 1,
+                name: "حذاء نسائي 01",
+                category: "أحذية نسائية",
+                price: 299,
+                image: "../images/w1.jpg",
+                sizes: [36, 37, 38, 39, 40, 41],
+                colors: [
+                    "أسود",
+                    "أبيض",
+                    "بيج"
+                ]
+            },
+
+
+            2: {
+                id: 2,
+                name: "حذاء نسائي 02",
+                category: "أحذية رياضية",
+                price: 349,
+                image: "../images/w2.jpg",
+                sizes: [36, 37, 38, 39, 40, 41],
+                colors: [
+                    "أبيض",
+                    "وردي",
+                    "أسود"
+                ]
+            },
+
+
+            3: {
+                id: 3,
+                name: "حذاء نسائي 03",
+                category: "أحذية كاجوال",
+                price: 379,
+                image: "../images/w3.jpg",
+                sizes: [36, 37, 38, 39, 40],
+                colors: [
+                    "بني",
+                    "بيج",
+                    "أسود"
+                ]
+            },
+
+
+            4: {
+                id: 4,
+                name: "حذاء نسائي 04",
+                category: "أحذية رياضية",
+                price: 329,
+                image: "../images/w4.jpg",
+                sizes: [36, 37, 38, 39, 40, 41],
+                colors: [
+                    "أبيض",
+                    "رمادي",
+                    "أزرق"
+                ]
+            },
+
+
+            5: {
+                id: 5,
+                name: "حذاء نسائي 05",
+                category: "أحذية نسائية",
+                price: 359,
+                image: "../images/w5.jpg",
+                sizes: [36, 37, 38, 39, 40],
+                colors: [
+                    "أسود",
+                    "أحمر",
+                    "أبيض"
+                ]
+            },
+
+
+            6: {
+                id: 6,
+                name: "حذاء نسائي 06",
+                category: "أحذية نسائية",
+                price: 399,
+                image: "../images/w6.jpg",
+                sizes: [36, 37, 38, 39, 40, 41],
+                colors: [
+                    "بيج",
+                    "أسود",
+                    "أبيض"
+                ]
+            }
+
+        };
+
+
+        /* =========================
+           المتغيرات
+        ========================= */
+
+        let selectedProduct = null;
+        let selectedSize = null;
+        let selectedColor = null;
+
+
+        /* =========================
+           العناصر
+        ========================= */
+
+        const modal =
+            document.getElementById("productModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        const modalName =
+            document.getElementById("modalName");
+
+        const modalCategory =
+            document.getElementById("modalCategory");
+
+        const modalPrice =
+            document.getElementById("modalPrice");
+
+        const sizeOptions =
+            document.getElementById("sizeOptions");
+
+        const colorOptions =
+            document.getElementById("colorOptions");
+
+        const addCartButton =
+            document.getElementById("addCartButton");
+
+        const selectionMessage =
+            document.getElementById("selectionMessage");
+
+        const cartCount =
+            document.getElementById("cartCount");
+
+
+        /* =========================
+           فتح المنتج
+        ========================= */
+
+        function openProduct(productId) {
+
+            selectedProduct =
+                products[productId];
+
+            selectedSize = null;
+            selectedColor = null;
+
+
+            modalImage.src =
+                selectedProduct.image;
+
+            modalImage.alt =
+                selectedProduct.name;
+
+            modalName.textContent =
+                selectedProduct.name;
+
+            modalCategory.textContent =
+                selectedProduct.category;
+
+            modalPrice.textContent =
+                selectedProduct.price + " درهم";
+
+
+            /* المقاسات */
+
+            sizeOptions.innerHTML = "";
+
+            selectedProduct.sizes.forEach(
+                function(size) {
+
+                    const button =
+                        document.createElement("button");
+
+                    button.className =
+                        "option-button";
+
+                    button.type = "button";
+
+                    button.textContent =
+                        size;
+
+
+                    button.onclick =
+                        function() {
+
+                            selectedSize = size;
+
+
+                            document
+                                .querySelectorAll(
+                                    "#sizeOptions .option-button"
+                                )
+                                .forEach(
+                                    function(btn) {
+
+                                        btn.classList.remove(
+                                            "selected"
+                                        );
+
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "selected"
+                            );
+
+
+                            updateAddButton();
+
+                        };
+
+
+                    sizeOptions.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            /* الألوان */
+
+            colorOptions.innerHTML = "";
+
+            selectedProduct.colors.forEach(
+                function(color) {
+
+                    const button =
+                        document.createElement("button");
+
+                    button.className =
+                        "option-button color-button";
+
+                    button.type = "button";
+
+                    button.textContent =
+                        color;
+
+
+                    button.onclick =
+                        function() {
+
+                            selectedColor = color;
+
+
+                            document
+                                .querySelectorAll(
+                                    "#colorOptions .option-button"
+                                )
+                                .forEach(
+                                    function(btn) {
+
+                                        btn.classList.remove(
+                                            "selected"
+                                        );
+
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "selected"
+                            );
+
+
+                            updateAddButton();
+
+                        };
+
+
+                    colorOptions.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            addCartButton.disabled = true;
+
+            addCartButton.textContent =
+                "اختاري المقاس واللون";
+
+            selectionMessage.textContent = "";
+
+
+            modal.classList.add("active");
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+
+        /* =========================
+           إغلاق
+        ========================= */
+
+        function closeModal() {
+
+            modal.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow =
+                "";
+
+            selectedProduct = null;
+            selectedSize = null;
+            selectedColor = null;
+        }
+
+
+        /* =========================
+           تحديث الزر
+        ========================= */
+
+        function updateAddButton() {
+
+            if (
+                selectedSize &&
+                selectedColor
+            ) {
+
+                addCartButton.disabled =
+                    false;
+
+                addCartButton.textContent =
+                    "أضف إلى السلة";
+
+
+                selectionMessage.textContent =
+                    "المقاس: " +
+                    selectedSize +
+                    " | اللون: " +
+                    selectedColor;
+
+            }
+
+            else {
+
+                addCartButton.disabled =
+                    true;
+
+                addCartButton.textContent =
+                    "اختاري المقاس واللون";
+
+
+                if (
+                    selectedSize &&
+                    !selectedColor
+                ) {
+
+                    selectionMessage.textContent =
+                        "اختاري اللون";
+
+                }
+
+                else if (
+                    !selectedSize &&
+                    selectedColor
+                ) {
+
+                    selectionMessage.textContent =
+                        "اختاري المقاس";
+
+                }
+
+                else {
+
+                    selectionMessage.textContent =
+                        "";
+
+                }
+
+            }
+        }
+
+
+        /* =========================
+           قراءة السلة
+        ========================= */
+
+        function getCart() {
+
+            const savedCart =
+                localStorage.getItem(
+                    "simoCart"
+                );
+
+
+            if (!savedCart) {
+                return [];
+            }
+
+
+            try {
+
+                return JSON.parse(
+                    savedCart
+                );
+
+            }
+
+            catch (error) {
+
+                return [];
+
+            }
+        }
+
+
+        /* =========================
+           حفظ السلة
+        ========================= */
+
+        function saveCart(cart) {
+
+            localStorage.setItem(
+                "simoCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+        /* =========================
+           إضافة للسلة
+        ========================= */
+
+        function addToCart() {
+
+            if (
+                !selectedProduct ||
+                !selectedSize ||
+                !selectedColor
+            ) {
+
+                return;
+
+            }
+
+
+            const cart =
+                getCart();
+
+
+            const newItem = {
+
+                cartId: Date.now(),
+
+                productId:
+                    selectedProduct.id,
+
+                name:
+                    selectedProduct.name,
+
+                category:
+                    selectedProduct.category,
+
+                price:
+                    selectedProduct.price,
+
+                image:
+                    selectedProduct.image,
+
+                size:
+                    selectedSize,
+
+                color:
+                    selectedColor,
+
+                quantity: 1
+
+            };
+
+
+            cart.push(newItem);
+
+
+            saveCart(cart);
+
+
+            updateCartCount();
+
+
+            addCartButton.textContent =
+                "✓ تمت الإضافة إلى السلة";
+
+
+            selectionMessage.textContent =
+                "تمت إضافة المنتج بنجاح";
+
+
+            setTimeout(
+                function() {
+
+                    closeModal();
+
+                },
+                900
+            );
+
+        }
+
+
+        /* =========================
+           عدد السلة
+        ========================= */
+
+        function updateCartCount() {
+
+            const cart =
+                getCart();
+
+
+            let totalQuantity = 0;
+
+
+            cart.forEach(
+                function(item) {
+
+                    totalQuantity +=
+                        Number(item.quantity) || 1;
+
+                }
+            );
+
+
+            cartCount.textContent =
+                totalQuantity;
+
+        }
+
+
+        /* =========================
+           الضغط خارج النافذة
+        ========================= */
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           زر ESC
+        ========================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           التشغيل
+        ========================= */
+
+        updateCartCount();
+
+    </script>
+
+</body>
+
+</html>
+```

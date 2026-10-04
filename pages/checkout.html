@@ -1,0 +1,1439 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>إتمام الطلب | SIMO KMB</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            color: #111111;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+
+        .back-cart {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 17px;
+
+            border: 1px solid #dddddd;
+            border-radius: 25px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .back-cart:hover {
+            border-color: #111111;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            max-width: 1100px;
+            margin: auto;
+
+            padding: 60px 25px 90px;
+        }
+
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+
+        .page-title span {
+            display: block;
+
+            color: #777777;
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-title h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+
+        .page-title p {
+            color: #777777;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .checkout-layout {
+            display: grid;
+
+            grid-template-columns: 1fr 380px;
+
+            gap: 30px;
+
+            align-items: start;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-box {
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 12px;
+
+            padding: 30px;
+        }
+
+
+        .form-box h2 {
+            font-size: 21px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 7px;
+
+            padding: 13px 14px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #111111;
+        }
+
+
+        .form-group textarea {
+            min-height: 110px;
+
+            resize: vertical;
+        }
+
+
+        .required {
+            color: #777777;
+        }
+
+
+        /* =========================
+           ORDER SUMMARY
+        ========================= */
+
+        .order-box {
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            position: sticky;
+
+            top: 25px;
+        }
+
+
+        .order-box h2 {
+            font-size: 21px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .order-products {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            max-height: 420px;
+
+            overflow-y: auto;
+
+            padding-left: 3px;
+        }
+
+
+        .order-item {
+            display: grid;
+
+            grid-template-columns: 70px 1fr;
+
+            gap: 12px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        .order-item-image {
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            background: #f2f2f2;
+        }
+
+
+        .order-item-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .order-item-info h3 {
+            font-size: 14px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .order-item-info p {
+            color: #777777;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        .order-item-price {
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+        }
+
+
+        .total-section {
+            margin-top: 22px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #eeeeee;
+        }
+
+
+        .total-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+            font-size: 14px;
+        }
+
+
+        .total-final {
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-top: 18px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid #eeeeee;
+        }
+
+
+        /* =========================
+           WHATSAPP BUTTON
+        ========================= */
+
+        .whatsapp-button {
+            width: 100%;
+
+            height: 55px;
+
+            margin-top: 25px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .whatsapp-button:hover {
+            background: #333333;
+        }
+
+
+        .whatsapp-button:disabled {
+            background: #cccccc;
+
+            cursor: not-allowed;
+        }
+
+
+        .whatsapp-note {
+            text-align: center;
+
+            color: #888888;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty-message {
+            display: none;
+
+            text-align: center;
+
+            padding: 70px 20px;
+        }
+
+
+        .empty-message.show {
+            display: block;
+        }
+
+
+        .empty-message h2 {
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty-message p {
+            color: #777777;
+
+            margin-bottom: 25px;
+        }
+
+
+        .shop-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 48px;
+
+            padding: 0 25px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111111;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+
+        footer p {
+            color: #aaaaaa;
+
+            font-size: 13px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .order-box {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 40px 15px 70px;
+            }
+
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+
+
+            .form-box,
+            .order-box {
+                padding: 20px;
+            }
+
+
+            .logo {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="header-container">
+
+
+            <a
+                href="../index.html"
+                class="logo"
+            >
+                SIMO KMB
+            </a>
+
+
+            <a
+                href="cart.html"
+                class="back-cart"
+            >
+                ← العودة إلى السلة
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="page">
+
+
+        <section class="page-title">
+
+            <span>
+                SIMO KMB
+            </span>
+
+            <h1>
+                إتمام الطلب
+            </h1>
+
+            <p>
+                أدخل معلوماتك ثم أرسل الطلب عبر WhatsApp.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             EMPTY CART
+        ========================= -->
+
+        <section
+            class="empty-message"
+            id="emptyMessage"
+        >
+
+            <h2>
+                السلة فارغة
+            </h2>
+
+            <p>
+                لا توجد منتجات لإتمام الطلب.
+            </p>
+
+            <a
+                href="shop.html"
+                class="shop-button"
+            >
+                العودة إلى المتجر
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+             CHECKOUT
+        ========================= -->
+
+        <section
+            class="checkout-layout"
+            id="checkoutLayout"
+        >
+
+
+            <!-- =====================
+                 CUSTOMER FORM
+            ====================== -->
+
+            <div class="form-box">
+
+                <h2>
+                    معلومات الزبون
+                </h2>
+
+
+                <form id="orderForm">
+
+
+                    <div class="form-group">
+
+                        <label for="customerName">
+                            الاسم الكامل
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="مثال: محمد العلوي"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="customerPhone">
+                            رقم الهاتف
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            placeholder="مثال: 0612345678"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="customerCity">
+                            المدينة
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerCity"
+                            placeholder="مثال: تطوان"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="customerAddress">
+                            العنوان بالتفصيل
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="customerAddress"
+                            placeholder="اكتب العنوان بالتفصيل..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="customerNote">
+                            ملاحظات إضافية
+                        </label>
+
+                        <textarea
+                            id="customerNote"
+                            placeholder="مثال: أريد الاتصال بي قبل التوصيل..."
+                        ></textarea>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- =====================
+                 ORDER
+            ====================== -->
+
+            <aside class="order-box">
+
+                <h2>
+                    تفاصيل الطلب
+                </h2>
+
+
+                <div
+                    class="order-products"
+                    id="orderProducts"
+                >
+                </div>
+
+
+                <div class="total-section">
+
+
+                    <div class="total-row">
+
+                        <span>
+                            عدد المنتجات
+                        </span>
+
+                        <strong id="totalItems">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total-row">
+
+                        <span>
+                            المجموع
+                        </span>
+
+                        <strong id="subtotal">
+                            0 درهم
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total-row">
+
+                        <span>
+                            التوصيل
+                        </span>
+
+                        <strong>
+                            يحدد مع صاحب المحل
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total-row total-final">
+
+                        <span>
+                            الإجمالي
+                        </span>
+
+                        <strong id="totalPrice">
+                            0 درهم
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="whatsapp-button"
+                    id="whatsappButton"
+                    onclick="sendOrderToWhatsApp()"
+                >
+                    تأكيد الطلب عبر WhatsApp
+                </button>
+
+
+                <p class="whatsapp-note">
+                    عند الضغط على الزر سيتم فتح WhatsApp
+                    برسالة تحتوي على تفاصيل طلبك.
+                </p>
+
+
+            </aside>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <strong>
+            SIMO KMB
+        </strong>
+
+        <p>
+            متجر الأحذية
+        </p>
+
+        <p>
+            © 2026 SIMO KMB - جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           رقم WhatsApp
+        ========================= */
+
+        const WHATSAPP_NUMBER =
+            "212609379100";
+
+
+        /* =========================
+           السلة
+        ========================= */
+
+        let cart = [];
+
+
+        /* =========================
+           قراءة السلة
+        ========================= */
+
+        function loadCart() {
+
+            const savedCart =
+                localStorage.getItem("simoCart");
+
+
+            if (!savedCart) {
+
+                cart = [];
+
+                return;
+
+            }
+
+
+            try {
+
+                const parsed =
+                    JSON.parse(savedCart);
+
+
+                if (Array.isArray(parsed)) {
+
+                    cart = parsed;
+
+                }
+
+                else {
+
+                    cart = [];
+
+                }
+
+            }
+
+            catch (error) {
+
+                cart = [];
+
+            }
+
+        }
+
+
+        /* =========================
+           السعر
+        ========================= */
+
+        function formatPrice(price) {
+
+            return Number(price)
+                .toLocaleString("ar-MA")
+                + " درهم";
+
+        }
+
+
+        /* =========================
+           عرض الطلب
+        ========================= */
+
+        function renderOrder() {
+
+            const checkoutLayout =
+                document.getElementById(
+                    "checkoutLayout"
+                );
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+            const orderProducts =
+                document.getElementById(
+                    "orderProducts"
+                );
+
+
+            orderProducts.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                checkoutLayout.style.display =
+                    "none";
+
+                emptyMessage.classList.add(
+                    "show"
+                );
+
+                return;
+
+            }
+
+
+            checkoutLayout.style.display =
+                "grid";
+
+            emptyMessage.classList.remove(
+                "show"
+            );
+
+
+            let totalItems = 0;
+
+            let totalPrice = 0;
+
+
+            cart.forEach(
+                function(item) {
+
+                    const quantity =
+                        Number(item.quantity) || 1;
+
+                    const price =
+                        Number(item.price) || 0;
+
+
+                    totalItems += quantity;
+
+                    totalPrice +=
+                        price * quantity;
+
+
+                    const article =
+                        document.createElement("article");
+
+                    article.className =
+                        "order-item";
+
+
+                    /* الصورة */
+
+                    const imageBox =
+                        document.createElement("div");
+
+                    imageBox.className =
+                        "order-item-image";
+
+
+                    const image =
+                        document.createElement("img");
+
+                    image.src =
+                        item.image;
+
+                    image.alt =
+                        item.name || "منتج";
+
+
+                    imageBox.appendChild(
+                        image
+                    );
+
+
+                    /* المعلومات */
+
+                    const info =
+                        document.createElement("div");
+
+                    info.className =
+                        "order-item-info";
+
+
+                    const name =
+                        document.createElement("h3");
+
+                    name.textContent =
+                        item.name || "حذاء";
+
+
+                    const details =
+                        document.createElement("p");
+
+                    details.textContent =
+                        "المقاس: " +
+                        (item.size || "-") +
+                        " | اللون: " +
+                        (item.color || "-") +
+                        " | الكمية: " +
+                        quantity;
+
+
+                    const priceElement =
+                        document.createElement("div");
+
+                    priceElement.className =
+                        "order-item-price";
+
+                    priceElement.textContent =
+                        formatPrice(
+                            price * quantity
+                        );
+
+
+                    info.appendChild(name);
+
+                    info.appendChild(details);
+
+                    info.appendChild(priceElement);
+
+
+                    article.appendChild(
+                        imageBox
+                    );
+
+                    article.appendChild(
+                        info
+                    );
+
+
+                    orderProducts.appendChild(
+                        article
+                    );
+
+                }
+            );
+
+
+            document.getElementById(
+                "totalItems"
+            ).textContent =
+                totalItems;
+
+
+            document.getElementById(
+                "subtotal"
+            ).textContent =
+                formatPrice(totalPrice);
+
+
+            document.getElementById(
+                "totalPrice"
+            ).textContent =
+                formatPrice(totalPrice);
+
+        }
+
+
+        /* =========================
+           إرسال الطلب إلى WhatsApp
+        ========================= */
+
+        function sendOrderToWhatsApp() {
+
+
+            /* التحقق من وجود منتجات */
+
+            if (cart.length === 0) {
+
+                alert(
+                    "السلة فارغة."
+                );
+
+                return;
+
+            }
+
+
+            /* قراءة معلومات الزبون */
+
+            const name =
+                document.getElementById(
+                    "customerName"
+                ).value.trim();
+
+
+            const phone =
+                document.getElementById(
+                    "customerPhone"
+                ).value.trim();
+
+
+            const city =
+                document.getElementById(
+                    "customerCity"
+                ).value.trim();
+
+
+            const address =
+                document.getElementById(
+                    "customerAddress"
+                ).value.trim();
+
+
+            const note =
+                document.getElementById(
+                    "customerNote"
+                ).value.trim();
+
+
+            /* التحقق */
+
+            if (
+                !name ||
+                !phone ||
+                !city ||
+                !address
+            ) {
+
+                alert(
+                    "الرجاء إدخال جميع المعلومات المطلوبة."
+                );
+
+                return;
+
+            }
+
+
+            /* =========================
+               حساب المجموع
+            ========================= */
+
+            let totalItems = 0;
+
+            let totalPrice = 0;
+
+
+            cart.forEach(
+                function(item) {
+
+                    const quantity =
+                        Number(item.quantity) || 1;
+
+                    const price =
+                        Number(item.price) || 0;
+
+
+                    totalItems += quantity;
+
+                    totalPrice +=
+                        price * quantity;
+
+                }
+            );
+
+
+            /* =========================
+               إنشاء رسالة WhatsApp
+            ========================= */
+
+            let message = "";
+
+
+            message +=
+                "🛍️ *طلب جديد - SIMO KMB*";
+
+
+            message +=
+                "\n\n";
+
+
+            message +=
+                "👤 *معلومات الزبون:*";
+
+
+            message +=
+                "\n";
+
+            message +=
+                "الاسم: " +
+                name;
+
+
+            message +=
+                "\n";
+
+            message +=
+                "الهاتف: " +
+                phone;
+
+
+            message +=
+                "\n";
+
+            message +=
+                "المدينة: " +
+                city;
+
+
+            message +=
+                "\n";
+
+            message +=
+                "العنوان: " +
+                address;
+
+
+            if (note) {
+
+                message +=
+                    "\n";
+
+                message +=
+                    "ملاحظات: " +
+                    note;
+
+            }
+
+
+            message +=
+                "\n\n";
+
+
+            message +=
+                "👟 *المنتجات:*";
+
+
+            message +=
+                "\n";
+
+
+            message +=
+                "━━━━━━━━━━━━";
+
+
+            message +=
+                "\n";
+
+
+            cart.forEach(
+                function(item, index) {
+
+                    const quantity =
+                        Number(item.quantity) || 1;
+
+                    const price =
+                        Number(item.price) || 0;
+
+                    const itemTotal =
+                        price * quantity;
+
+
+                    message +=
+                        "\n" +
+                        (index + 1) +
+                        ". " +
+                        (item.name || "حذاء");
+
+
+                    message +=
+                        "\n";
+
+                    message +=
+                        "المقاس: " +
+                        (item.size || "-");
+
+
+                    message +=
+                        "\n";
+
+                    message +=
+                        "اللون: " +
+                        (item.color || "-");
+
+
+                    message +=
+                        "\n";
+
+                    message +=
+                        "الكمية: " +
+                        quantity;
+
+
+                    message +=
+                        "\n";
+
+                    message +=
+                        "السعر: " +
+                        formatPrice(itemTotal);
+
+
+                    message +=
+                        "\n";
+
+                    message +=
+                        "━━━━━━━━━━━━";
+
+                    message +=
+                        "\n";
+
+                }
+            );
+
+
+            message +=
+                "\n";
+
+            message +=
+                "📦 عدد القطع: " +
+                totalItems;
+
+
+            message +=
+                "\n";
+
+
+            message +=
+                "💰 *إجمالي المنتجات: " +
+                formatPrice(totalPrice) +
+                "*";
+
+
+            message +=
+                "\n\n";
+
+
+            message +=
+                "أرغب في تأكيد هذا الطلب.";
+
+
+            /* =========================
+               تحويل الرسالة إلى URL
+            ========================= */
+
+            const encodedMessage =
+                encodeURIComponent(
+                    message
+                );
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                WHATSAPP_NUMBER +
+                "?text=" +
+                encodedMessage;
+
+
+            /* =========================
+               فتح WhatsApp
+            ========================= */
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+
+        /* =========================
+           تشغيل الصفحة
+        ========================= */
+
+        loadCart();
+
+        renderOrder();
+
+    </script>
+
+</body>
+
+</html>
+```
